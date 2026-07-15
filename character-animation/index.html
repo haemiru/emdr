@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>토닥토닥 · 짱샘 EMDR</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 9:16 세로 무대 -->
+  <div class="stage" id="stage">
+    <!-- 배경: 좌우로 번갈아 번지는 빛무리 -->
+    <div class="glow glow-left" id="glowL"></div>
+    <div class="glow glow-right" id="glowR"></div>
+
+    <!-- 상단 브랜드 -->
+    <header class="brand">
+      <div class="brand-title">토닥토닥</div>
+      <div class="brand-sub">좌 ↔ 우 양측성 음악</div>
+    </header>
+
+    <!-- 가이드 점: 눈으로 따라보는 타깃 (레퍼런스 1번) -->
+    <div class="guide-track">
+      <div class="guide-dot" id="dot"></div>
+    </div>
+
+    <!-- 짱샘: 좌우로 살짝 기울이는 캐릭터 -->
+    <div class="character" id="char">
+      <img src="assets/jjangsaem.png" alt="짱샘 선생님" draggable="false" />
+    </div>
+
+    <!-- 하단 토닥 표시 -->
+    <div class="tap-row">
+      <span class="tap-side" id="tapL">토닥</span>
+      <span class="tap-heart">♡</span>
+      <span class="tap-side" id="tapR">토닥</span>
+    </div>
+
+    <!-- 헤드폰 안내 -->
+    <div class="headphone-note">🎧 헤드폰을 착용하면 좌우 효과가 살아납니다</div>
+
+    <!-- 시작 오버레이 (브라우저 자동재생 정책 + iOS 대응) -->
+    <div class="start-overlay" id="startOverlay">
+      <button class="start-btn" id="startBtn">▶ 시작하기</button>
+      <p>화면을 누르면 양측성 음악과 동작이 시작돼요</p>
+    </div>
+  </div>
+
+  <!-- 컨트롤 (제작/미리보기용 · 사이트 이식 시 React 슬라이더로 대체) -->
+  <div class="controls">
+    <label>속도(좌우 1왕복)
+      <input type="range" id="rate" min="0.3" max="1.5" step="0.05" value="0.7" />
+      <span id="rateVal">0.70 Hz</span>
+    </label>
+    <label>동작 깊이
+      <input type="range" id="depth" min="0.4" max="1" step="0.05" value="0.85" />
+      <span id="depthVal">85%</span>
+    </label>
+    <label>볼륨
+      <input type="range" id="vol" min="0" max="0.5" step="0.01" value="0.18" />
+      <span id="volVal">18%</span>
+    </label>
+    <button id="toggleBtn" class="toggle-btn">일시정지</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

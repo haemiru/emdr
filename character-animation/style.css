@@ -1,0 +1,207 @@
+:root {
+  --lavender: #9B89B3;
+  --mint: #A8E6CF;
+  --coral: #FF8B94;
+  --ink: #2e2a37;
+  --bg-top: #f4f0fa;
+  --bg-bot: #e9f7f1;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+  background: #1c1830;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 20px;
+  color: var(--ink);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* ===== 9:16 세로 무대 ===== */
+.stage {
+  position: relative;
+  width: min(360px, 92vw);
+  aspect-ratio: 9 / 16;
+  border-radius: 28px;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bot) 100%);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+/* 좌우 번갈아 번지는 빛무리 */
+.glow {
+  position: absolute;
+  top: 50%;
+  width: 60%;
+  height: 60%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  filter: blur(48px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.08s linear;
+}
+.glow-left  { left: -18%;  background: radial-gradient(circle, var(--lavender), transparent 70%); }
+.glow-right { right: -18%; background: radial-gradient(circle, var(--mint), transparent 70%); }
+
+/* 브랜드 */
+.brand {
+  position: absolute;
+  top: 18px;
+  left: 0; right: 0;
+  text-align: center;
+  z-index: 5;
+}
+.brand-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--lavender);
+  letter-spacing: 2px;
+}
+.brand-sub {
+  margin-top: 2px;
+  font-size: 12px;
+  color: #8a8298;
+  letter-spacing: 1px;
+}
+
+/* 가이드 점 트랙 (눈으로 따라보기) */
+.guide-track {
+  position: absolute;
+  top: 88px;
+  left: 8%;
+  right: 8%;
+  height: 24px;
+  z-index: 6;
+}
+.guide-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff, var(--coral) 70%);
+  box-shadow: 0 0 16px 4px rgba(255, 139, 148, 0.7);
+  will-change: transform;
+}
+
+/* 짱샘 캐릭터 */
+.character {
+  position: absolute;
+  left: 50%;
+  bottom: 64px;
+  width: 80%;
+  transform-origin: 50% 100%;     /* 발끝(엉덩이) 기준으로 좌우 기울임 */
+  will-change: transform;
+}
+.character img {
+  width: 100%;
+  height: auto;
+  display: block;
+  /* 흰 배경 컷아웃을 무대에 자연스럽게 얹기 위한 부드러운 바닥 그림자 */
+  filter: drop-shadow(0 18px 16px rgba(80, 60, 110, 0.28));
+}
+
+/* 하단 토닥 표시 */
+.tap-row {
+  position: absolute;
+  bottom: 30px;
+  left: 0; right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  z-index: 6;
+}
+.tap-side {
+  font-size: 16px;
+  font-weight: 700;
+  color: #b7afc6;
+  transition: color 0.05s linear, transform 0.05s linear;
+}
+.tap-side.active {
+  color: var(--coral);
+  transform: scale(1.25);
+}
+.tap-heart { color: var(--lavender); font-size: 14px; }
+
+.headphone-note {
+  position: absolute;
+  bottom: 8px;
+  left: 0; right: 0;
+  text-align: center;
+  font-size: 10.5px;
+  color: #9a92a8;
+  z-index: 6;
+}
+
+/* 시작 오버레이 */
+.start-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(28, 24, 48, 0.78);
+  backdrop-filter: blur(2px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  z-index: 20;
+  color: #fff;
+  transition: opacity 0.4s;
+}
+.start-overlay.hidden { opacity: 0; pointer-events: none; }
+.start-overlay p { font-size: 12px; color: #d9d3ec; }
+.start-btn {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--lavender), var(--coral));
+  border: none;
+  border-radius: 999px;
+  padding: 14px 34px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(155, 137, 179, 0.5);
+}
+.start-btn:active { transform: scale(0.96); }
+
+/* ===== 컨트롤 ===== */
+.controls {
+  width: min(360px, 92vw);
+  background: #2a2542;
+  border-radius: 16px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #d9d3ec;
+  font-size: 12px;
+}
+.controls label {
+  display: grid;
+  grid-template-columns: 110px 1fr 64px;
+  align-items: center;
+  gap: 10px;
+}
+.controls input[type="range"] { width: 100%; accent-color: var(--coral); }
+.controls span { text-align: right; color: var(--mint); font-variant-numeric: tabular-nums; }
+.toggle-btn {
+  margin-top: 4px;
+  padding: 9px;
+  border: none;
+  border-radius: 10px;
+  background: var(--lavender);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+.toggle-btn:active { transform: scale(0.98); }
