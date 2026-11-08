@@ -4,8 +4,8 @@ from PIL import Image, ImageFilter
 from collections import deque
 import sys
 
-SRC = r"C:\Users\bsuha\Claude-prj\02.Dev\emdr\character-animation\assets\jjangsaem.png"
-DST = r"C:\Users\bsuha\Claude-prj\02.Dev\emdr\character-animation\assets\jjangsaem.png"
+SRC = r"C:\Users\bsuha\AI-Studio\02.Dev\emdr\character-animation\assets\jjangsaem.png"
+DST = r"C:\Users\bsuha\AI-Studio\02.Dev\emdr\character-animation\assets\jjangsaem.png"
 
 im = Image.open(SRC).convert("RGBA")
 w, h = im.size
